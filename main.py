@@ -19,7 +19,7 @@ class App:
         self.root.title("Text Detection App")
 
         # Set the coordinates and size of the region to capture
-        self.x, self.y, self.width, self.height = 360, 560, 250, 100
+        self.x, self.y, self.width, self.height = 360, 580, 250, 75
         #360, 560, 250, 100
         # Flags to indicate whether the mouse has already been moved for each trade type
         self.spy_trade_opened = False
@@ -77,96 +77,96 @@ class App:
             self.detected_label.config(text=text)
 
             # Check if the text "BTO SPY XXXc" is present
-            if re.search(r'.*[Bb][Tt][Oo].*[Ss][Pp][Yy].*\d+[Cc¢]', text):
-                strike_price = re.search(r'.*[Bb][Tt][Oo].*[Ss][Pp][Yy].*(\d+)[Cc¢]', text).group(1)
+            if re.search(r'.*[Bb][TtI][Oo].*[Ss][Pp][Yy].*\d+[Cc¢€]', text):
+                strike_price = re.search(r'.*[Bb][TtI][Oo].*[Ss][Pp][Yy].*(\d+)[Cc¢€]', text).group(1)
                 # Open a new SPY trade if one hasn't already been opened
                 if not self.spy_trade_opened and not self.spx_trade_opened:
                     self.text_widget.insert("end", "Trade opened: BTO SPY XXXc\n")
-                    pyautogui.moveTo(1780, 200)
+                    pyautogui.moveTo(1590, 200)
                     pyautogui.click()
                     self.spy_trade_opened = True
                     self.spy_trade_closed = False
                     self.opened_strike_price = strike_price
 
             # Check if the text "STC SPY XXXc" is present
-            if re.search(r'[Ss][Tt][Cce].*[Ss][Pp][Yy].*\d+[Cc¢]', text):
-                strike_price = re.search(r'[Ss][Tt][Cce].*[Ss][Pp][Yy].*(\d+)[Cc¢]', text).group(1)
+            if re.search(r'[Ss][TtI][Cce¢].*[Ss][Pp][Yy].*\d+[Cc¢€]', text):
+                strike_price = re.search(r'[Ss][TtI][Cce€¢].*[Ss][Pp][Yy].*(\d+)[Cc¢€]', text).group(1)
                 # Close the current SPY trade if one has been opened but not yet closed
                 if self.spy_trade_opened and not self.spy_trade_closed and self.opened_strike_price == strike_price:
                     self.text_widget.insert("end", "Trade closed: STC SPY XXXc\n")
-                    pyautogui.moveTo(1700, 200)
+                    pyautogui.moveTo(1650, 200)
                     pyautogui.click()
                     self.spy_trade_closed = True
                     self.spy_trade_opened = False
                     self.total_trades += 1
                     self.total_trades_label.config(text=f"Total Trades: {self.total_trades}")
 
-            if re.search(r'[Bb][Tt][Oo].*[Ss][Pp][Yy].*\d+[Pp]', text):
-                strike_price = re.search(r'.*[Bb][Tt][Oo].*[Ss][Pp][Yy].*(\d+)[Pp]', text).group(1)
+            if re.search(r'[Bb][TtI][Oo].*[Ss][Pp][Yy].*\d+[Pp]', text):
+                strike_price = re.search(r'.*[Bb][TtI][Oo].*[Ss][Pp][Yy].*(\d+)[Pp]', text).group(1)
                 # Open a new SPY trade if one hasn't already been opened
                 if not self.spy_trade_opened and not self.spx_trade_opened:
                     self.text_widget.insert("end", "Trade opened: BTO SPY XXXp\n")
-                    pyautogui.moveTo(1780, 200)
+                    pyautogui.moveTo(1650, 200)
                     pyautogui.click()
                     self.spy_trade_opened = True
                     self.spy_trade_closed = False
                     self.opened_strike_price = strike_price
 
             # Check if the text "STC SPY XXXc" is present
-            if re.search(r'[Ss][Tt][Cce].*[Ss][Pp][Yy].*\d+[Pp]', text):
-                strike_price = re.search(r'.*[Ss][Tt][Cce].*[Ss][Pp][Yy].*(\d+)[Pp]', text).group(1)
+            if re.search(r'[Ss][TtI][Cce€¢].*[Ss][Pp][Yy].*\d+[Pp]', text):
+                strike_price = re.search(r'.*[SsI][Tt][Cce€¢].*[Ss][Pp][Yy].*(\d+)[Pp]', text).group(1)
                 # Close the current SPY trade if one has been opened but not yet closed
                 if self.spy_trade_opened and not self.spy_trade_closed and self.opened_strike_price == strike_price:
                     self.text_widget.insert("end", "Trade closed: STC SPY XXXp\n")
-                    pyautogui.moveTo(1700, 200)
+                    pyautogui.moveTo(1590, 200)
                     pyautogui.click()
                     self.spy_trade_closed = True
                     self.spy_trade_opened = False
                     self.total_trades += 1
                     self.total_trades_label.config(text=f"Total Trades: {self.total_trades}")
 
-            if re.search(r'[Bb][Tt][Oo].*[Ss][Pp][Xx].*\d+[Cc¢]', text):
-                strike_price = re.search(r'.*[Bb][Tt][Oo].*[Ss][Pp][Xx].*(\d+)[Cc¢]', text).group(1)
+            if re.search(r'[Bb][TtI][Oo].*[Ss][Pp][Xx].*\d+[Cc¢€]', text):
+                strike_price = re.search(r'.*[Bb][TtI][Oo].*[Ss][Pp][Xx].*(\d+)[Cc¢€]', text).group(1)
                 # Open a new SPY trade if one hasn't already been opened
                 if not self.spx_trade_opened and not self.spy_trade_opened:
                     self.text_widget.insert("end", "Trade opened: BTO SPX XXXc\n")
-                    pyautogui.moveTo(1780, 200)
+                    pyautogui.moveTo(1590, 200)
                     pyautogui.click()
                     self.spx_trade_opened = True
                     self.spx_trade_closed = False
                     self.opened_strike_price = strike_price
 
             # Check if the text "STC SPY XXXc" is present
-            if re.search(r'[Ss][Tt][Cce].*[Ss][Pp][Xx].*\d+[Cc¢]', text):
-                strike_price = re.search(r'.*[Ss][Tt][Cce].*[Ss][Pp][Xx].*(\d+)[Cc¢]', text).group(1)
+            if re.search(r'[Ss][TtI][Cce¢].*[Ss][Pp][Xx].*\d+[Cc¢€]', text):
+                strike_price = re.search(r'.*[Ss][TtI][Cce¢].*[Ss][Pp][Xx].*(\d+)[Cc¢€]', text).group(1)
                 # Close the current SPY trade if one has been opened but not yet closed
                 if self.spx_trade_opened and not self.spx_trade_closed and self.opened_strike_price == strike_price:
                     self.text_widget.insert("end", "Trade closed: STC SPX XXXc\n")
-                    pyautogui.moveTo(1700, 200)
+                    pyautogui.moveTo(1650, 200)
                     pyautogui.click()
                     self.spx_trade_closed = True
                     self.spx_trade_opened = False
                     self.total_trades += 1
                     self.total_trades_label.config(text=f"Total Trades: {self.total_trades}")
 
-            if re.search(r'[Bb][Tt][Oo].*[Ss][Pp][Xx].*\d+[Pp]', text):
-                strike_price = re.search(r'.*[Bb][Tt][Oo].*[Ss][Pp][Xx].*(\d+)[Pp]', text).group(1)
+            if re.search(r'[Bb][TtI][Oo].*[Ss][Pp][Xx].*\d+[Pp]', text):
+                strike_price = re.search(r'.*[Bb][TtI][Oo].*[Ss][Pp][Xx].*(\d+)[Pp]', text).group(1)
                 # Open a new SPY trade if one hasn't already been opened
                 if not self.spy_trade_opened and not self.spx_trade_opened:
                     self.text_widget.insert("end", "Trade opened: BTO SPX XXXp\n")
-                    pyautogui.moveTo(1780, 200)
+                    pyautogui.moveTo(1650, 200)
                     pyautogui.click()
                     self.spx_trade_opened = True
                     self.spx_trade_closed = False
                     self.opened_strike_price = strike_price
 
             # Check if the text "STC SPY XXXc" is present
-            if re.search(r'[Ss][Tt][Cce].*[Ss][Pp][Xx].*\d+[Pp]', text):
-                strike_price = re.search(r'.*[Ss][Tt][Cce].*[Ss][Pp][Xx].*(\d+)[Pp]', text).group(1)
+            if re.search(r'[Ss][TtI][Cce€¢].*[Ss][Pp][Xx].*\d+[Pp]', text):
+                strike_price = re.search(r'.*[Ss][TtI][Cce€¢].*[Ss][Pp][Xx].*(\d+)[Pp]', text).group(1)
                 # Close the current SPY trade if one has been opened but not yet closed
                 if self.spx_trade_opened and not self.spx_trade_closed and self.opened_strike_price == strike_price:
                     self.text_widget.insert("end", "Trade closed: STC SPX XXXp\n")
-                    pyautogui.moveTo(1700, 200)
+                    pyautogui.moveTo(1590, 200)
                     pyautogui.click()
                     self.spx_trade_closed = True
                     self.spx_trade_opened = False
@@ -178,7 +178,7 @@ class App:
             # Check if the current time matches the sleep time
             if current_time.tm_hour == hour and current_time.tm_min == minute:
                 # Put the computer into sleep mode
-                os.system("rundll32.exe powrprof.dll,SetSuspendState Standby")
+                self.detecting = False
                 break
 
             # Update the image label with the latest screenshot
